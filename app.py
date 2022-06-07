@@ -46,11 +46,15 @@ class Leaderboard(db.Model):
 #home
 @app.route("/")
 def home():
-    maxScores = db.session.query(func.max(Leaderboard.score)).filter_by(username=current_user.username).first()
+    bAuth = current_user.is_authenticated
+    if bAuth:
+        maxScores = db.session.query(func.max(Leaderboard.score)).filter_by(username=current_user.username).first()
+        return render_template('home.html', user=current_user, score=maxScores)
+    else:
+        return render_template('home.html', user=current_user)
     #userMaxScore = db.session.query(Leaderboard).filter(Leaderboard.score == maxScores and user.username == current_user.username).first()
     
-    return render_template('home.html', user=current_user, score=maxScores)
-
+    
 
 #/login
 @app.route("/login", methods=["GET", "POST"])
@@ -123,7 +127,6 @@ def leaderboard():
 #default
 if (__name__ == '__main__'):
     app.run(
-        host="192.168.54.120",
         port=5555,
         debug=True
     )
