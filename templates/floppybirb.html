@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Floppy Birb</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='floppybirb.css')}}">
+    <script src="{{ url_for('static', filename='floppybirb.js') }}"></script>
+    <script src="{{ url_for('static', filename='jputil.js') }}"></script>
+
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>window.alert('{{ message }}');</script>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+    <canvas id="idCanvas"></canvas>
+    {% if user.is_authenticated %}
+    <form id="idFeedback" method="post" action=""></form>
+    {% else %}
+    <br>
+    <a href="{{url_for('login')}}">Login to submit your score</a>
+    <br>
+    {% endif %}
+    <button onClick="window.location.reload();">Play Again!</button>
+    <button onClick="window.location.href = `{{url_for('home')}}`">Home</button>
+    
+</body>
+</html>

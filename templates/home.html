@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css')}}">
+    <script src="{{ url_for('static', filename='chuckAPI.js') }}"></script>
+    <script src="{{ url_for('static', filename='jputil.js') }}"></script>
+
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="{{ url_for('leaderboard')}}">Leaderboard</a>
+        {% if user.is_authenticated %}
+        <a href="{{ url_for('logout')}}">Logout</a>
+        {% else %}
+        <a href="{{url_for('login')}}">Login</a>
+        <a href="{{url_for('register')}}">Register</a>
+        {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+    <h1 align="center">Welcome {{ user.username }}!</h1>
+    {% else %}
+    <h1 align="center">Welcome Guest!</h1>
+    <h3 align="center">Login to save the score!</h3>
+    {% endif %}
+    <h3 align="center">Your Highest Score is {{ score[0] }}!</h3>
+    <button onClick="window.location.href = `{{url_for('floppybirb')}}`">Floppybirb</button>
+    <br>
+    <br>
+    <section id="idFeedback"></section>    
+    
+</body>
+</html>

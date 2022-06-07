@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css')}}">
+</head>
+<body>
+<!-- Usado para ir buscar as mensagens server side (flash()) -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>window.alert('{{ message }}');</script>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+    <div class="topnav">
+        <a href="{{ url_for('home')}}">Home</a>
+        <a href="{{url_for('login')}}">Login</a>
+        <a class="active" href="#register">Register</a>
+    </div>
+    <form class="box" action="" method="post">
+        <h1>Register</h1>
+        <input type="text" class="form-control" id="username" placeholder="Username"name="username">
+        <input type="password" class="form-control" id="password" placeholder="Password"name="password">
+        <input type="password" class="form-control" id="passwordcf" placeholder="Confirm Password"name="passwordcf">
+        <input type="email" class="form-control" id="email" placeholder="Email"name="email">
+        <input type="submit" class="btn btn-primary" placeholder="submit" value="Register">
+    </form>
+</body>
+</html>
