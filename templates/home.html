@@ -21,11 +21,12 @@
     </div>
     {% if user.is_authenticated %}
     <h1 align="center">Welcome {{ user.username }}!</h1>
+    <h3 align="center">Your Highest Score is {{ score[0] }}!</h3>
+
     {% else %}
     <h1 align="center">Welcome Guest!</h1>
     <h3 align="center">Login to save the score!</h3>
     {% endif %}
-    <h3 align="center">Your Highest Score is {{ score[0] }}!</h3>
     <button onClick="window.location.href = `{{url_for('floppybirb')}}`">Floppybirb</button>
     <br>
     <br>
