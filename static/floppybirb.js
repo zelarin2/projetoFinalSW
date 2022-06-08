@@ -4,7 +4,7 @@ const ID_CANVAS = "idCanvas";
 const ID_FEEDBACK = "idFeedback";
 
 
-var oCanvas, x, rectArray, canvas,mouseX,mouseY,score=0, oFeedback;
+var oCanvas, x, rectArray, canvas,mouseX,mouseY,score, oFeedback;
 
 function boot(){
     oCanvas = id(ID_CANVAS);
@@ -12,6 +12,7 @@ function boot(){
     rectArray = [];
     oCanvas.width = 600;
     oCanvas.height = 600;
+    score = 0;
     x = 500
     canvas = oCanvas.getContext("2d");
     window.addEventListener("mousemove",function(event){

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, flash #flask basic imports
 from flask_sqlalchemy import SQLAlchemy # Extensao de flask para apoiar o uso de SQLALCHEMY (Ajuda na entrada e saida de informação na base de dados)
-from sqlalchemy.sql import func, desc
+from sqlalchemy.sql import func, desc, asc
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user # Extensao de flask que trata do login e das sessoes
 from flask_bcrypt import Bcrypt # Extensao de Flask para encriptar informação (Usado nas passwords)
 
@@ -48,8 +48,8 @@ class Leaderboard(db.Model):
 def home():
     bAuth = current_user.is_authenticated
     if bAuth:
-        maxScores = db.session.query(func.max(Leaderboard.score)).filter_by(username=current_user.username).first()
-        return render_template('home.html', user=current_user, score=maxScores)
+        scores = db.session.query(Leaderboard.score).filter(Leaderboard.username == current_user.username).order_by(desc(Leaderboard.score)).first()
+        return render_template('home.html', user=current_user, score=scores)
     else:
         return render_template('home.html', user=current_user)
     #userMaxScore = db.session.query(Leaderboard).filter(Leaderboard.score == maxScores and user.username == current_user.username).first()
