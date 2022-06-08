@@ -18,3 +18,21 @@ function getChuck(){
         fPiada
     )
 }
+
+
+function fPiada(){
+    var bMaduro = this.readyState===4 && this.status===200
+    if (bMaduro){
+        var oResposta = JSON.parse(
+            this.responseText 
+        )
+        var value = oResposta.value
+
+        strHtml ='<h3 align="center">'+value+'</h3>'
+
+        this.mWhereToReply.innerHTML = strHtml
+    }
+    else{
+        this.mWhereToReply.innerHTML = this.readyState
+    }
+}
