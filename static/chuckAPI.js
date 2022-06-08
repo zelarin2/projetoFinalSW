@@ -1,6 +1,8 @@
 window.onload = boot
 
-const ID_FEEDBACK = "idFeedback"
+const ID_FEEDBACK = "idFeedback",
+        CHUCK_URL = "https://api.chucknorris.io/jokes/random";
+
 
 var oFeedback
 
@@ -10,7 +12,6 @@ function boot(){
     getChuck()
 }//boot
 
-CHUCK_URL = "https://api.chucknorris.io/jokes/random"
 function getChuck(){
     pedidoAjaxGet(
         CHUCK_URL,

@@ -108,6 +108,7 @@ function animate(){
         if (player.x == rect.x){
             score += 0.5;
         }
+        
 
         canvas.font = "30px Arial";
         canvas.fillText(score, 300, 40)
